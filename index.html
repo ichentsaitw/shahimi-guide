@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>認識胖鯊魚鯊西米｜情報整理與商業分析</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦈</text></svg>">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+  :root {
+    --shark-blue: #6AAFE6;
+    --shark-blue-deep: #3D7FBF;
+    --shark-blue-pale: #E3F1FC;
+    --shark-pink: #F4B8C1;
+    --shark-pink-pale: #FFF2F5;
+    --warm-bg: #FDF9F5;
+    --warm-card: #FFFFFF;
+    --warm-border: #F0E6DB;
+    --text: #3A3330;
+    --text-light: #7A716B;
+    --text-muted: #A89E96;
+    --accent-orange: #F0A04B;
+    --accent-green: #6EC89B;
+    --accent-red: #E87070;
+    --shadow-soft: 0 2px 8px rgba(58, 51, 48, 0.06), 0 8px 24px rgba(58, 51, 48, 0.04);
+    --radius: 20px;
+    --radius-sm: 14px;
+    --radius-xs: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--warm-bg);
+    line-height: 1.85;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    background: linear-gradient(160deg, #7EC8E3 0%, var(--shark-blue) 40%, var(--shark-pink) 100%);
+    color: white;
+    text-align: center;
+    padding: 56px 24px 48px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 40px 40px;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 40px;
+    background: var(--warm-bg);
+    border-radius: 40px 40px 0 0;
+  }
+  .hero-stickers {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .hero-stickers img {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+    padding: 4px;
+    object-fit: contain;
+    transition: transform 0.3s;
+  }
+  .hero-stickers img:hover { transform: scale(1.12) rotate(-3deg); }
+  .hero h1 {
+    font-size: 2.2em;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  }
+  .hero .subtitle {
+    font-size: 1.05em;
+    opacity: 0.92;
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  /* ===== Nav ===== */
+  .toc {
+    max-width: 780px;
+    margin: -10px auto 24px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+  .toc-inner {
+    background: var(--warm-card);
+    border-radius: var(--radius);
+    padding: 18px 24px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  .toc a {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 30px;
+    background: var(--shark-blue-pale);
+    color: var(--shark-blue-deep);
+    text-decoration: none;
+    font-size: 0.88em;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .toc a:hover {
+    background: var(--shark-blue);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  /* ===== Section ===== */
+  section {
+    max-width: 780px;
+    margin: 0 auto 36px;
+    padding: 0 20px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .section-header .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 1.4em;
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .section-header h2 small {
+    display: block;
+    font-size: 0.55em;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 2px;
+  }
+
+  /* ===== Card ===== */
+  .card {
+    background: var(--warm-card);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--warm-border);
+  }
+  .card h3 {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .card p { color: var(--text); margin-bottom: 10px; }
+  .card ul { padding-left: 20px; }
+  .card li { color: var(--text); margin-bottom: 6px; }
+
+  /* ===== Profile Grid ===== */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 500px) { .profile-grid { grid-template-columns: 1fr; } }
+  .profile-item {
+    background: var(--warm-bg);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+  }
+  .profile-item .label {
+    font-size: 0.75em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+    font-weight: 600;
+  }
+  .profile-item .value { font-weight: 700; font-size: 1.02em; }
+
+  /* ===== Sticker Gallery ===== */
+  .sticker-gallery {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 16px 0;
+  }
+  .sticker-gallery img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    background: var(--warm-bg);
+    padding: 6px;
+    transition: transform 0.2s;
+  }
+  .sticker-gallery img:hover { transform: scale(1.1); }
+
+  /* ===== Product Gallery ===== */
+  .product-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .product-card {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--warm-bg);
+    border: 1px solid var(--warm-border);
+  }
+  .product-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+  .product-card .caption {
+    padding: 10px 14px;
+    font-size: 0.88em;
+    font-weight: 600;
+  }
+
+  /* ===== Timeline ===== */
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 9px; top: 6px; bottom: 6px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--shark-blue), var(--shark-pink));
+    border-radius: 3px;
+  }
+  .timeline-item { position: relative; margin-bottom: 22px; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -25px; top: 9px;
+    width: 14px; height: 14px;
+    background: var(--shark-blue);
+    border-radius: 50%;
+    border: 3px solid var(--warm-card);
+    box-shadow: 0 0 0 2px var(--shark-blue);
+  }
+  .timeline-item .year {
+    font-weight: 700;
+    color: var(--shark-blue-deep);
+    font-size: 0.88em;
+  }
+
+  /* ===== Income Highlight ===== */
+  .income-highlight {
+    background: linear-gradient(135deg, #FFF8ED, #FEF0D0);
+    border: 2px solid var(--accent-orange);
+    border-radius: var(--radius);
+    padding: 26px;
+    margin-bottom: 16px;
+  }
+  .income-highlight h3 {
+    color: #8B5E1A;
+    font-size: 1.15em;
+  }
+  .income-highlight p { color: #6B4A15; }
+
+  /* ===== Math Box ===== */
+  .math-box {
+    background: var(--warm-bg);
+    border: 1px solid var(--warm-border);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    margin: 14px 0;
+    font-size: 0.95em;
+  }
+  .math-step {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--warm-border);
+  }
+  .math-step:last-of-type { border-bottom: none; }
+  .math-step .note { color: var(--text-muted); font-size: 0.9em; }
+  .math-result {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 1.1em;
+    color: var(--shark-blue-deep);
+    padding-top: 10px;
+    margin-top: 8px;
+    border-top: 2.5px solid var(--text);
+  }
+
+  /* ===== Compare Table ===== */
+  .compare-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--warm-border);
+    margin: 14px 0;
+    font-size: 0.93em;
+  }
+  .compare-table th {
+    background: var(--shark-blue);
+    color: white;
+    padding: 11px 14px;
+    font-weight: 700;
+    text-align: left;
+  }
+  .compare-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--warm-border);
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: var(--warm-bg); }
+
+  /* ===== Meter ===== */
+  .meter { margin: 14px 0; }
+  .meter-label { display: flex; justify-content: space-between; font-size: 0.88em; margin-bottom: 5px; font-weight: 500; }
+  .meter-bar { height: 10px; background: var(--warm-border); border-radius: 5px; overflow: hidden; }
+  .meter-fill { height: 100%; border-radius: 5px; }
+
+  /* ===== Think Box ===== */
+  .think-box {
+    background: var(--shark-pink-pale);
+    border: 2px solid var(--shark-pink);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 16px 0;
+  }
+  .think-box h4 {
+    color: #9D3050;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 1.05em;
+  }
+  .think-box p, .think-box li { color: #7A2040; }
+  .think-box ul { padding-left: 20px; }
+
+  /* ===== Tag ===== */
+  .tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 30px;
+    font-size: 0.78em;
+    font-weight: 700;
+  }
+  .tag-green { background: #D1FAE5; color: #065F46; }
+  .tag-orange { background: #FEF3C7; color: #92400E; }
+  .tag-red { background: #FEE2E2; color: #991B1B; }
+  .tag-blue { background: var(--shark-blue-pale); color: var(--shark-blue-deep); }
+
+  /* ===== Sources ===== */
+  .sources {
+    background: var(--warm-card);
+    border-radius: var(--radius);
+    padding: 24px;
+    border: 1px solid var(--warm-border);
+  }
+  .sources h3 { font-size: 0.9em; color: var(--text-muted); margin-bottom: 14px; font-weight: 700; }
+  .sources a {
+    color: var(--shark-blue-deep);
+    text-decoration: none;
+    font-size: 0.88em;
+    display: block;
+    margin-bottom: 8px;
+    padding: 4px 0;
+  }
+  .sources a:hover { text-decoration: underline; }
+
+  /* ===== Footer ===== */
+  footer {
+    text-align: center;
+    padding: 28px 20px 36px;
+    color: var(--text-muted);
+    font-size: 0.82em;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 600px) {
+    .hero { padding: 44px 16px 40px; }
+    .hero h1 { font-size: 1.7em; }
+    .hero-stickers img { width: 60px; height: 60px; }
+    .card { padding: 22px 18px; }
+    section { margin-bottom: 28px; }
+    .sticker-gallery img { width: 70px; height: 70px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Hero ===== -->
+<div class="hero">
+  <div class="hero-stickers">
+    <img src="https://stickershop.line-scdn.net/stickershop/v1/product/13232262/LINEStorePC/main.png?v=1" alt="鯊西米貼圖第1代">
+    <img src="https://stickershop.line-scdn.net/stickershop/v1/product/28125499/LINEStorePC/main.png?v=1" alt="鯊西米宅在家">
+    <img src="https://stickershop.line-scdn.net/stickershop/v1/product/31340593/LINEStorePC/main.png?v=1" alt="鯊西米多喝水">
+    <img src="https://stickershop.line-scdn.net/stickershop/v1/product/31923463/LINEStorePC/main.png?v=1" alt="鯊西米不開心">
+  </div>
+  <h1>認識胖鯊魚鯊西米</h1>
+  <p class="subtitle">一個台灣素人創作者的 LINE 貼圖 IP 成長故事</p>
+</div>
+
+<!-- ===== TOC ===== -->
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#character">角色介紹</a>
+    <a href="#creator">創作者</a>
+    <a href="#products">商品與合作</a>
+    <a href="#money">收入分析</a>
+    <a href="#controversy">爭議</a>
+    <a href="#takeaway">學到什麼</a>
+  </div>
+</nav>
+
+<!-- ===== 1. Character ===== -->
+<section id="character">
+  <div class="section-header">
+    <div class="icon" style="background: var(--shark-blue-pale);">🐋</div>
+    <h2><small>CHARACTER</small>這隻胖鯊魚是誰？</h2>
+  </div>
+
+  <div class="card">
+    <p><strong>鯊西米（Shahimi）</strong>是一隻「肥過頭的胖鯊魚」。肥肥的嘴邊肉加上虎牙是牠的招牌特色，胖嘟嘟圓滾滾的身材搭配豐富的表情變化，走的是<strong>療癒可愛路線</strong>。</p>
+
+    <div class="sticker-gallery">
+      <img src="https://cdn2.cdnstep.com/SUlqvpUEeeVYelPEFb3c/0-1.webp" alt="鯊西米表情1">
+      <img src="https://cdn2.cdnstep.com/SUlqvpUEeeVYelPEFb3c/3-1.webp" alt="鯊西米表情2">
+      <img src="https://cdn2.cdnstep.com/SUlqvpUEeeVYelPEFb3c/5-1.webp" alt="鯊西米表情3">
+      <img src="https://cdn2.cdnstep.com/SUlqvpUEeeVYelPEFb3c/8-1.webp" alt="鯊西米表情4">
+      <img src="https://cdn2.cdnstep.com/SUlqvpUEeeVYelPEFb3c/12-1.webp" alt="鯊西米表情5">
+      <img src="https://cdn2.cdnstep.com/SUlqvpUEeeVYelPEFb3c/18-1.webp" alt="鯊西米表情6">
+    </div>
+    <p style="font-size: 0.82em; color: var(--text-muted); text-align: center;">貼圖預覽｜圖片來源：LINE 原創貼圖市集</p>
+
+    <div class="profile-grid" style="margin-top: 18px;">
+      <div class="profile-item">
+        <div class="label">誕生時間</div>
+        <div class="value">2020 年 9 月</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">主要平台</div>
+        <div class="value">LINE 貼圖</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">貼圖數量</div>
+        <div class="value">22 組貼圖 / 表情貼</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">重要成就</div>
+        <div class="value">LINE 貼圖名人堂 🏆</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>角色定位：純表情包，沒有故事</h3>
+    <p>鯊西米<strong>沒有漫畫、沒有動畫、沒有完整的故事線或世界觀</strong>。它的魅力全靠角色本身的可愛造型和表情來支撐。</p>
+    <p>這和有完整世界觀的 IP（如<strong>角落生物</strong>有各角色的背景故事、<strong>吉伊卡哇</strong>有連載漫畫和動畫）不同。這個區別很重要，後面談收入時會再提到。</p>
+  </div>
+</section>
+
+<!-- ===== 2. Creator ===== -->
+<section id="creator">
+  <div class="section-header">
+    <div class="icon" style="background: #FEF3C7;">🎨</div>
+    <h2><small>CREATOR</small>創作者：翊翎（YI-LING）</h2>
+  </div>
+
+  <div class="card">
+    <h3>完全素人自學的故事</h3>
+    <div class="profile-grid" style="margin-top: 8px;">
+      <div class="profile-item">
+        <div class="label">出身</div>
+        <div class="value">新竹</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">學歷</div>
+        <div class="value">大學讀行銷（非美術科班）</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">原本的工作</div>
+        <div class="value">烘焙坊</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">繪畫訓練</div>
+        <div class="value">零。靠 YouTube 自學</div>
+      </div>
+    </div>
+    <p style="margin-top: 16px;">他自己說過：<strong>「我畫的鯊魚甚至還比較像海豚呢！」</strong>——不是天才型創作者，而是靠觀察市場趨勢加上持續產出走出來的。目前與家人同住，弟弟會推薦流行的 YouTube 頻道和網路梗，是他的靈感來源之一。</p>
+  </div>
+
+  <div class="card">
+    <h3>創作歷程</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="year">起步期</div>
+        <div class="desc">從畫漫畫人物開始，後來嘗試畫動物（先畫貓咪）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">第一組貼圖</div>
+        <div class="desc">推出「<strong>貓咪冰淇淋</strong>」——反應平淡，沒有爆紅</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2020 年 9 月</div>
+        <div class="desc">觀察到 IKEA 鯊魚抱枕在社群上爆紅 🔥 順勢創作出「胖鯊魚鯊西米」，大受歡迎</div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">持續發展中</div>
+        <div class="desc">累計 22 組貼圖、入選 LINE 貼圖名人堂、開始接到品牌合作邀約</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. Products ===== -->
+<section id="products">
+  <div class="section-header">
+    <div class="icon" style="background: #D1FAE5;">📦</div>
+    <h2><small>PRODUCTS</small>目前的商品與合作</h2>
+  </div>
+
+  <div class="card">
+    <h3>社群規模</h3>
+    <div class="meter">
+      <div class="meter-label"><span>Instagram @s914229</span><span><strong>約 5.7 萬</strong>粉絲</span></div>
+      <div class="meter-bar"><div class="meter-fill" style="width: 57%; background: linear-gradient(90deg, #833AB4, #E1306C, #F77737);"></div></div>
+    </div>
+    <div class="meter">
+      <div class="meter-label"><span>Facebook 粉絲頁</span><span><strong>約 2.4 萬</strong>讚</span></div>
+      <div class="meter-bar"><div class="meter-fill" style="width: 24%; background: #1877F2;"></div></div>
+    </div>
+    <p style="font-size: 0.88em; color: var(--text-muted); margin-top: 10px;">參考比較：白爛貓 IG 超過 40 萬粉、貓爪抓約 15 萬粉。鯊西米在台灣原創 IP 中屬於「中間偏前段」。</p>
+  </div>
+
+  <div class="card">
+    <h3>商品與合作一覽</h3>
+
+    <div class="sticker-gallery">
+      <img src="https://stickershop.line-scdn.net/stickershop/v1/product/13232262/LINEStorePC/main.png?v=1" alt="鯊西米第1代" title="第1代貼圖">
+      <img src="https://stickershop.line-scdn.net/stickershop/v1/product/13725167/LINEStorePC/main.png?v=1" alt="鯊西米第4代" title="第4代貼圖">
+      <img src="https://stickershop.line-scdn.net/stickershop/v1/product/17918599/LINEStorePC/main.png?v=1" alt="鯊西米第12代" title="第12代貼圖">
+      <img src="https://stickershop.line-scdn.net/stickershop/v1/product/28125499/LINEStorePC/main.png?v=1" alt="鯊西米宅在家" title="宅在家">
+      <img src="https://stickershop.line-scdn.net/stickershop/v1/product/31340593/LINEStorePC/main.png?v=1" alt="鯊西米多喝水" title="多喝水">
+      <img src="https://stickershop.line-scdn.net/stickershop/v1/product/32945891/LINEStorePC/main.png?v=1" alt="鯊西米最新" title="近期貼圖">
+    </div>
+    <p style="font-size: 0.82em; color: var(--text-muted); text-align: center; margin-bottom: 16px;">部分 LINE 貼圖封面一覽｜圖片來源：LINE STORE</p>
+
+    <table class="compare-table">
+      <tr><th>類型</th><th>內容</th><th>狀態</th></tr>
+      <tr>
+        <td><strong>LINE 貼圖</strong></td>
+        <td>22 組貼圖、表情貼、特效貼圖</td>
+        <td><span class="tag tag-green">持續販售中</span></td>
+      </tr>
+      <tr>
+        <td><strong>LINE Bank 聯名</strong></td>
+        <td>LINE Bank × 鯊西米 聯名貼圖（16 張）</td>
+        <td><span class="tag tag-blue">企業合作</span></td>
+      </tr>
+      <tr>
+        <td><strong>DEVILCASE 手機殼</strong></td>
+        <td>多款主題手機殼、耳機殼、充電配件</td>
+        <td><span class="tag tag-green">販售中</span></td>
+      </tr>
+      <tr>
+        <td><strong>盲盒公仔</strong></td>
+        <td>已出到第二代，5 基本款 + 1 隱藏款（約 5cm）</td>
+        <td><span class="tag tag-green">販售中</span></td>
+      </tr>
+      <tr>
+        <td><strong>Fandora Shop 周邊</strong></td>
+        <td>帆布包、卡套、服飾</td>
+        <td><span class="tag tag-red">2025/12 已全面下架</span></td>
+      </tr>
+    </table>
+
+    <div class="think-box" style="margin-top: 16px;">
+      <h4>🔍 觀察重點</h4>
+      <p>LINE Bank 聯名是目前看到<strong>最大的合作</strong>（金融業品牌）。但整體而言，合作對象仍以中小型品牌為主，<strong>沒有 7-11、全家、麥當勞這類大型通路合作</strong>，也沒有快閃店或主題展覽。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. Money ===== -->
+<section id="money">
+  <div class="section-header">
+    <div class="icon" style="background: #FEF3C7;">💰</div>
+    <h2><small>BUSINESS ANALYSIS</small>靠這個能賺到錢嗎？</h2>
+  </div>
+
+  <div class="income-highlight">
+    <h3>🔥 這是最值得思考的部分</h3>
+    <p>很多人看到一個角色很紅、貼圖很多人用，就以為創作者一定賺很多。但真的是這樣嗎？讓我們用數字來拆解。</p>
+  </div>
+
+  <div class="card">
+    <h3>第一步：了解 LINE 貼圖怎麼分錢</h3>
+    <p>你花 NT$30 買一組貼圖，這筆錢經過層層分潤：</p>
+    <div class="math-box">
+      <div class="math-step">
+        <span>你付出</span>
+        <span><strong>NT$ 30</strong></span>
+      </div>
+      <div class="math-step">
+        <span>Apple / Google 商店抽 30%</span>
+        <span class="note">- NT$ 9</span>
+      </div>
+      <div class="math-step">
+        <span>LINE 平台再拿剩下的一半</span>
+        <span class="note">- NT$ 10.5</span>
+      </div>
+      <div class="math-result">
+        <span>創作者實際拿到</span>
+        <span>NT$ 10.5（約 35%）</span>
+      </div>
+    </div>
+    <p><strong>你花 30 元，創作者只拿到大約 10 元。</strong>剩下的 20 元被平台和商店拿走了。</p>
+  </div>
+
+  <div class="card">
+    <h3>第二步：看看真實的收入數據</h3>
+    <p>一位台灣創作者在 Threads 上公開了自己的真實數字：</p>
+    <div class="math-box">
+      <div class="math-step">
+        <span>經營時間</span>
+        <span>約 1 年 2 個月</span>
+      </div>
+      <div class="math-step">
+        <span>總共賣出</span>
+        <span>約 4,000 組</span>
+      </div>
+      <div class="math-result">
+        <span>總收入</span>
+        <span>NT$ 28,300</span>
+      </div>
+    </div>
+    <p>一年多的心血，<strong>不到三萬元</strong>。平均一個月大約兩千多塊。這連打工的收入都不如。</p>
+  </div>
+
+  <div class="card">
+    <h3>第三步：頂尖的人能賺多少？</h3>
+    <p>LINE 官方公布的數據（2024 年）：</p>
+    <ul>
+      <li>台灣 LINE 貼圖創作者超過 <strong>100 萬人</strong></li>
+      <li>10 年來只選出 <strong>120 位 MVP</strong></li>
+      <li>更只有 <strong>15 位</strong>進入「貼圖名人堂」</li>
+      <li>TOP 10 創作者<strong>平均</strong>累計銷售達 <strong>NT$ 3.2 億</strong></li>
+    </ul>
+
+    <div class="think-box" style="margin-top: 14px;">
+      <h4>📊 數字背後的意思</h4>
+      <p>100 萬人裡面只有 15 人進名人堂。鯊西米是這 15 人之一，代表他在 LINE 貼圖圈是<strong>前 0.0015%</strong>。</p>
+      <p>但就像 NBA 球員都很強，普通先發和 LeBron James 的收入差距巨大。名人堂成員和 TOP 10 超級 IP（如白爛貓）之間，收入落差可能是幾倍到幾十倍。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>第四步：鯊西米能全職靠這個活嗎？</h3>
+    <p style="margin-bottom: 14px;">假設在台灣要穩定全職生活，年收入至少要 <strong>NT$ 60～80 萬</strong>（月入約 5～7 萬）。</p>
+
+    <table class="compare-table">
+      <tr><th>收入來源</th><th>推估狀況</th><th>穩定度</th></tr>
+      <tr>
+        <td>LINE 貼圖分潤</td>
+        <td>名人堂等級 + 22 組貼圖持續賣，年收可能數十萬</td>
+        <td><span class="tag tag-green">較穩定</span></td>
+      </tr>
+      <tr>
+        <td>企業聯名（LINE Bank 等）</td>
+        <td>單次合作可能數萬～十幾萬</td>
+        <td><span class="tag tag-orange">不固定</span></td>
+      </tr>
+      <tr>
+        <td>品牌授權（DEVILCASE、盲盒）</td>
+        <td>每案可能數萬，但案量有限</td>
+        <td><span class="tag tag-orange">不固定</span></td>
+      </tr>
+      <tr>
+        <td>周邊商品分潤</td>
+        <td>Fandora 已結束，目前管道在縮減</td>
+        <td><span class="tag tag-red">在萎縮</span></td>
+      </tr>
+      <tr>
+        <td>大型合作（展覽、動畫、大通路）</td>
+        <td>目前完全沒有</td>
+        <td><span class="tag tag-red">零</span></td>
+      </tr>
+    </table>
+
+    <div class="income-highlight" style="margin-top: 16px; border-color: var(--shark-blue); background: linear-gradient(135deg, var(--shark-blue-pale), #F0F7FF);">
+      <h3 style="color: var(--shark-blue-deep);">🦈 結論：大概率還不夠全職</h3>
+      <p style="color: var(--shark-blue-deep);">IG 上他寫「因工作忙碌關閉私訊」——但這個「工作」是 IP 經營還是另有正職？外部看不出來。專訪中提到畢業後在烘焙坊工作，但沒有說是否已離職全職創作。</p>
+      <p style="color: var(--shark-blue-deep); margin-bottom: 0;"><strong>最可能的狀態：有不錯的副業收入，但不一定能完全取代一份正職的穩定薪水。</strong></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>第五步：為什麼收入有天花板？</h3>
+    <p>對比更成功的 IP，可以看出鯊西米缺少的東西：</p>
+    <table class="compare-table">
+      <tr><th></th><th>🦈 鯊西米</th><th>🧸 角落生物 / 吉伊卡哇</th></tr>
+      <tr><td>故事與世界觀</td><td>沒有</td><td>有完整劇情，粉絲有情感投入</td></tr>
+      <tr><td>動畫</td><td>沒有</td><td>有動畫，打開新觀眾群</td></tr>
+      <tr><td>大型通路</td><td>無</td><td>便利商店集點、百貨聯名、主題餐廳</td></tr>
+      <tr><td>展覽活動</td><td>無</td><td>售票展覽、快閃店</td></tr>
+      <tr><td>國際市場</td><td>主要在台灣</td><td>跨國授權到多個國家</td></tr>
+    </table>
+    <p style="margin-top: 14px;"><strong>關鍵：</strong>一個 IP 要從「有人氣的貼圖」進化成「能養活創作者的事業」，需要<strong>內容深度</strong>（故事、角色關係讓粉絲投入情感）和<strong>商業規模</strong>（大通路、跨國授權）。光靠「可愛」是不夠的。</p>
+  </div>
+</section>
+
+<!-- ===== 5. Controversy ===== -->
+<section id="controversy">
+  <div class="section-header">
+    <div class="icon" style="background: #FEE2E2;">⚖️</div>
+    <h2><small>CONTROVERSY</small>曾有過的爭議</h2>
+  </div>
+
+  <div class="card">
+    <h3>Dcard 上的討論：和日本「サメーズ」像嗎？</h3>
+    <p>有網友在 Dcard 上討論鯊西米與日本角色「サメーズ（SAME-Z）」的相似性。サメーズ由日本插畫家アリムラモハ創作，約 2011 年就開始了。</p>
+    <table class="compare-table">
+      <tr><th></th><th>サメーズ（日本）</th><th>鯊西米（台灣）</th></tr>
+      <tr><td>誕生年</td><td>約 2011 年</td><td>2020 年</td></tr>
+      <tr><td>角色數量</td><td>6 隻不同種類的鯊魚 + 海豹</td><td>主要 1 隻角色的表情變化</td></tr>
+      <tr><td>有無故事</td><td>有世界觀、有黑色幽默劇情</td><td>無</td></tr>
+      <tr><td>畫風</td><td>日系插畫風</td><td>簡筆貼圖可愛風</td></tr>
+    </table>
+    <p style="margin-top: 14px;">實際對比後，兩者在畫風、角色架構、內容深度上差異不小。鯊魚本身是很常見的創作題材，造型變化也有限。這個爭議<strong>沒有法律裁決，也沒有官方結論</strong>，只停留在網友討論層級。</p>
+  </div>
+</section>
+
+<!-- ===== 6. Takeaway ===== -->
+<section id="takeaway">
+  <div class="section-header">
+    <div class="icon" style="background: var(--shark-blue-pale);">📝</div>
+    <h2><small>TAKEAWAY</small>從這個案例可以學到什麼</h2>
+  </div>
+
+  <div class="card">
+    <h3>值得學習的部分</h3>
+    <ul>
+      <li><strong>不需要科班出身</strong>——YI-LING 完全自學，證明技術門檻沒有想像中高</li>
+      <li><strong>觀察市場比埋頭畫重要</strong>——他注意到 IKEA 鯊魚抱枕的熱潮才創作，不是閉門造車</li>
+      <li><strong>失敗了就換方向</strong>——第一組「貓咪冰淇淋」反應不好，他持續嘗試不同角色</li>
+      <li><strong>100 萬人中前 15 名</strong>——進入名人堂本身是非常厲害的成就</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>值得反思的限制</h3>
+    <ul>
+      <li><strong>「紅」不等於「賺」</strong>——有知名度不代表有足夠收入，這是很多人的盲點</li>
+      <li><strong>平台依賴風險</strong>——收入主要來自 LINE，如果 LINE 貼圖式微怎麼辦？</li>
+      <li><strong>缺乏內容深度</strong>——沒有故事線，粉絲的「感情投入」比較淺，容易被取代</li>
+      <li><strong>商業規模天花板</strong>——中小品牌合作能帶來的收入有限，大型通路尚未突破</li>
+    </ul>
+  </div>
+
+  <div class="think-box">
+    <h4>💡 延伸思考題</h4>
+    <ul>
+      <li>如果你是鯊西米的創作者，你會做什麼讓收入再成長？</li>
+      <li>「先有故事再做角色」和「先做角色再補故事」，你覺得哪個比較好？為什麼？</li>
+      <li>台灣有哪些原創 IP 成功做到公司化經營？（提示：可以研究看看白爛貓、ㄇㄚˊ幾兔）他們做對了什麼？</li>
+      <li>如果 LINE 貼圖市場萎縮了，一個貼圖創作者可以轉往什麼方向？</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== Sources ===== -->
+<section>
+  <div class="sources">
+    <h3>📎 資料來源（本頁所有資訊皆來自以下公開來源）</h3>
+    <a href="https://creator-mag-tw.weblog.to/archives/15259359.html" target="_blank">📰 LINE 原創貼圖誌專訪｜「我畫的鯊魚甚至還比較像海豚呢！」</a>
+    <a href="https://store.line.me/stickershop/product/13232262/en" target="_blank">🛒 LINE STORE｜胖鯊魚鯊西米貼圖</a>
+    <a href="https://www.instagram.com/s914229/" target="_blank">📷 Instagram @s914229｜翊翎 & 胖鯊魚鯊西米</a>
+    <a href="https://www.facebook.com/s914229/" target="_blank">👤 Facebook 粉絲頁</a>
+    <a href="https://devilcase.com.tw/crossover/97" target="_blank">📱 DEVILCASE × 鯊西米聯名手機殼</a>
+    <a href="https://www.linecorp.com/tw/pr/news/tw/2024/4722" target="_blank">📊 LINE 原創市集 10 週年｜台灣創作者突破 100 萬人</a>
+    <a href="https://www.threads.com/@prodigal_purple/post/C7eA-WsvmNH?hl=zh-tw" target="_blank">💬 Threads｜LINE 貼圖創作者一年多真實收入分享</a>
+    <a href="https://www.dcard.tw/f/mood/p/236373572" target="_blank">💭 Dcard｜鯊魚角色相似性討論</a>
+    <a href="https://same-z.jp/about.html" target="_blank">🇯🇵 サメーズ（SAME-Z）官方網站</a>
+    <a href="https://potofu.me/shahimi" target="_blank">🔗 翊翎 & 胖鯊魚鯊西米 POTOFU 連結頁</a>
+  </div>
+</section>
+
+<footer>
+  資料整理時間：2026 年 3 月｜僅供閱讀討論與教育用途，非營利使用<br>
+  角色圖片版權屬於創作者翊翎（YI-LING），此處引用為合理使用並已註明出處
+</footer>
+
+</body>
+</html>
