@@ -440,27 +440,21 @@
 <!-- ===== Hero ===== -->
 <div class="hero">
   <div class="counter-bar">
-    <span id="counter">0</span> 次瀏覽
+    <span id="counter">0 次瀏覽</span>
   </div>
   <script>
-  // Supabase 計數器 (ic-analytics)
-  const SUPABASE_URL = 'https://dypkogwrsqtonefaodiv.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR5cGtvZ3dyc3F0b25lZmFvZGl2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MDg2NzMsImV4cCI6MjA4OTk4NDY3M30.Qqh4V7_yumS5TnrV5Eora6VrC3T1bjbdTl7Pd2s-Tw4';
-  const SITE_ID = 'shahimi-guide';
-
-  fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_page_view`, {
+  // Supabase 計數器
+  fetch('https://dypkogwrsqtonefaodiv.supabase.co/rest/v1/rpc/increment_page_view', {
     method: 'POST',
     headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR5cGtvZ3dyc3F0b25lZmFvZGl2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MDg2NzMsImV4cCI6MjA4OTk4NDY3M30.Qqh4V7_yumS5TnrV5Eora6VrC3T1bjbdTl7Pd2s-Tw4',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR5cGtvZ3dyc3F0b25lZmFvZGl2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MDg2NzMsImV4cCI6MjA4OTk4NDY3M30.Qqh4V7_yumS5TnrV5Eora6VrC3T1bjbdTl7Pd2s-Tw4',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ site: SITE_ID })
+    body: JSON.stringify({ site: 'shahimi-guide' })
   })
     .then(r => r.json())
-    .then(count => {
-      document.getElementById('counter').textContent = count;
-    })
+    .then(c => { document.getElementById('counter').textContent = c + ' 次瀏覽'; })
     .catch(() => {});
   </script>
   <div class="hero-stickers">
