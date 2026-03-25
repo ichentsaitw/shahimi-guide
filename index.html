@@ -443,11 +443,23 @@
     <span id="counter">000</span>次瀏覽
   </div>
   <script>
-  // 使用 counterapi.dev 免費計數器
-  fetch('https://api.counterapi.dev/v1/shahimi-guide/visits/up')
+  // Supabase 計數器 (ic-analytics)
+  const SUPABASE_URL = 'https://woexkbpjoatxkiznbyqz.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndvZXhrYnBqb2F0eGtpem5ieXF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI5MzA5NjIsImV4cCI6MjA1ODUwNjk2Mn0.t4Sw0ePnkMxGfyVCVfJwaBTrZMCfxs8KSmrBRBfQm0A';
+  const SITE_ID = 'shahimi-guide';
+
+  fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_page_view`, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ site: SITE_ID })
+  })
     .then(r => r.json())
-    .then(d => {
-      document.getElementById('counter').textContent = String(d.count).padStart(3, '0');
+    .then(count => {
+      document.getElementById('counter').textContent = String(count).padStart(3, '0');
     })
     .catch(() => {});
   </script>
