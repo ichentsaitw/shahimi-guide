@@ -440,7 +440,7 @@
 <!-- ===== Hero ===== -->
 <div class="hero">
   <div class="counter-bar">
-    <span id="counter">000</span>次瀏覽
+    <span id="counter">0</span>次瀏覽
   </div>
   <script>
   // Supabase 計數器 (ic-analytics)
@@ -459,7 +459,7 @@
   })
     .then(r => r.json())
     .then(count => {
-      document.getElementById('counter').textContent = String(count).padStart(3, '0');
+      document.getElementById('counter').textContent = count;
     })
     .catch(() => {});
   </script>
